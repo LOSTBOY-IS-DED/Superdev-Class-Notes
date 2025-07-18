@@ -2,7 +2,7 @@
 
 This repository is a **learning playground** for Rust macros. It explores all four types of macros in Rust with simple, practical examples.
 
-📂 The **main file** of this project is [`main.rs`](./main.rs) – this is where you’ll find the entry point running core examples.  
+📂 The **main file** of this project is [`main.rs`](./src/main.rs) – this is where you’ll find the entry point running core examples.  
 📁 Other folders contain **individual examples and learnings** about each macro type.
 
 ---
