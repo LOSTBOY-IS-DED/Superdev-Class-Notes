@@ -1,5 +1,9 @@
 // traits -> same as interfaces in typescript
 
+mod serialize_deserialize_macro;
+
+use serialize_deserialize_macro::{Deserialize, Serializable, Swap};
+
 struct Rect {
     width: u32,
     height: u32,
@@ -52,6 +56,8 @@ impl std::fmt::Display for User {
 //     }
 // }
 
+// serialization and deserialization
+
 fn main() {
     println!("Hello, world!");
     let rect = Rect {
@@ -82,5 +88,29 @@ fn main() {
 
     fn get_area_and_perimeter(s: impl Shape) -> (u32, u32) {
         (s.area(), s.perimeter())
+    }
+
+    // new example 3rd
+
+    let swap = Swap {
+        qty_1: 100,
+        qty_2: 200,
+    };
+
+    // Serialize
+    let serialized = swap.serialize();
+    println!("Serialized Swap: {:?}", serialized);
+
+    // Deserialize
+    match Swap::deserialize(serialized) {
+        Ok(deserialized) => {
+            println!(
+                "Deserialized Swap: qty_1 = {}, qty_2 = {}",
+                deserialized.qty_1, deserialized.qty_2
+            );
+        }
+        Err(e) => {
+            println!("Deserialization failed: {}", e);
+        }
     }
 }
