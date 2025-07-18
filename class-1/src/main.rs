@@ -33,6 +33,8 @@ impl Shape for Square {
 }
 
 // 2nd user example
+// -> they always exist in pair , there is a trait and they implement it
+#[derive(Debug)]
 struct User {
     name: String,
     age: u32,
@@ -44,6 +46,12 @@ impl std::fmt::Display for User {
     }
 }
 
+// impl std::fmt::Debug for User {
+//     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+//         write!(f, "(Name is : {}, Age is : {})", self.name, self.age)
+//     }
+// }
+
 fn main() {
     println!("Hello, world!");
     let rect = Rect {
@@ -51,12 +59,16 @@ fn main() {
         height: 20,
     };
     let square = Square { side: 5 };
+
+    // 2nd user example
     let user = User {
         name: String::from("Lord Subh"),
         age: 25,
     };
 
-    println!("{}", user);
+    println!("{}", user); // Display trait -> its for end users so they wrote macro
+    println!("{:?}", user); // Debug trait -> its for developers so they wrote macro
+
     println!("Area of rect: {}", rect.area());
     println!("Area of square: {}", square.area());
     println!(
